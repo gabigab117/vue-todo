@@ -4,7 +4,7 @@
 
   <form action="" @submit.prevent="createTodo(newTodo)">
     <input type="text" v-model="newTodo"> 
-    <button :disabled="newTodo.length === 0">Ajouter</button> <!--Desactiver le bouton si vide-->
+    <button :disabled="!newTodo.length">Ajouter</button> <!--Desactiver le bouton si vide-->
     {{ newTodo }}
   </form>
 
