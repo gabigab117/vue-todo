@@ -76,7 +76,7 @@ const sortedTodos = () => {
   if (hideCompleted.value === true) {
     return sortedTodos.filter(t => t.completed === false) // Important le filter super !
   }
-  return sortedTodos
+  return sortedTodos // C'est la hideCompleted dans la checkbox qui va faire le tri
 }
 </script>
 
