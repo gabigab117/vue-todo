@@ -12,34 +12,19 @@
 
 
 <div v-if="todos.length >= 1">
-  <table>
-  <caption>
-    Tableau des tâches
-  </caption>
-  <thead>
-    <tr>
-      <th scope="col">Titre</th>
-      <th scope="col">Fait ?</th>
-      <th scope="col">Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr
-    v-for="todo in sortedTodos"
-    :key="todo.date"
-    >
-      <th :class="{maclasse: todo.completed}" scope="row">{{ todo.title }}</th>
-      <td>
+    <ul>
+      <li 
+      v-for ="todo in sortedTodos"
+      :key="todo.date"
+      :class="{maclasse: todo.completed}"
+      >
       <label>
-        <input type="checkbox" v-model="todo.completed" />
-        {{ todo.completed }}
+        <input type="checkbox" v-model="todo.completed">
+        {{ todo.title }}
       </label>
-      <!---->
-      </td>
-      <td>{{ todo.date }}</td>
-    </tr>
-  </tbody>
-  </table>
+
+      </li>
+    </ul>
     <label>
       <input type="checkbox" v-model="hideCompleted" />
       Masquer les tâches terminées
