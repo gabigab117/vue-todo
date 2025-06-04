@@ -1,30 +1,31 @@
-# todo-grafik
+# Todo Grafik
 
-This template should help get you started developing with Vue 3 in Vite.
+## Description
 
-## Recommended IDE Setup
+This is a simple Todo application built with Vue.js. It allows users to manage their tasks efficiently by adding, viewing, and marking tasks as completed. The application also provides a feature to hide completed tasks.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Features
 
-## Customize configuration
+- Add new tasks with a title.
+- View tasks in a table format with columns for title, completion status, and date.
+- Mark tasks as completed using a checkbox.
+- Hide completed tasks with a toggle option.
+- Tasks are sorted by their completion status.
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## Project Structure
 
-## Project Setup
+- `App.vue`: Contains the main application logic and UI.
 
-```sh
-npm install
-```
+## How to Run
 
-### Compile and Hot-Reload for Development
+1. Clone the repository.
+2. Install dependencies using `npm install`.
+3. Start the development server with `npm run dev`.
+4. Open the application in your browser at the provided local URL.
 
-```sh
-npm run dev
-```
+## Technologies Used
 
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-# vue-todo
+- Vue.js 3
+- Vite
+- JavaScript
+- HTML/CSS
