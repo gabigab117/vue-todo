@@ -25,7 +25,7 @@
   </thead>
   <tbody>
     <tr
-    v-for="todo in sortedTodos()"
+    v-for="todo in sortedTodos"
     :key="todo.date"
     >
       <th :class="{maclasse: todo.completed}" scope="row">{{ todo.title }}</th>
@@ -44,6 +44,7 @@
       <input type="checkbox" v-model="hideCompleted" />
       Masquer les tâches terminées
     </label>
+    <p v-if="remainingTodos">Nombre de tâche{{ remainingTodos > 1 ? "s" : "" }} à faire {{ remainingTodos }}</p>
 </div>
 <div v-else>
 Pas de tâches
@@ -53,7 +54,7 @@ Pas de tâches
 
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 const todos = ref([
   {
@@ -71,13 +72,18 @@ const createTodo = title => {
   newTodo.value = "" // vider l'input
 }
 
-const sortedTodos = () => {
+const sortedTodos = computed(() => { // computed permet de ne pas appeler la fonction à chaque fois que le composant est rendu et plus besoin des parenthèses dans le html
+  // ça dérive de todos, donc computed va se mettre à jour si todos change
   const sortedTodos =  todos.value.toSorted((a, b) => a.completed > b.completed ? 1 : -1) // ne modifie pas le tableau mais l'organise. Avec une fonction de comparaison
-  if (hideCompleted.value === true) {
+  if (hideCompleted.value === true) { // toSorted car avec un computed pas de mutation !
     return sortedTodos.filter(t => t.completed === false) // Important le filter super !
   }
   return sortedTodos // C'est la hideCompleted dans la checkbox qui va faire le tri
-}
+})
+
+const remainingTodos = computed(() => {
+  return todos.value.filter(t => !t.completed).length
+})
 </script>
 
 
