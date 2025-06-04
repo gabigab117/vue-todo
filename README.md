@@ -16,6 +16,16 @@ This is a simple Todo application built with Vue.js. It allows users to manage t
 
 - `App.vue`: Contains the main application logic and UI.
 
+## Computed Properties
+
+L'application utilise des propriétés calculées (computed) pour optimiser les performances et gérer l'état dérivé :
+
+- **`sortedTodos`** : Trie les tâches par statut de completion (tâches non terminées en premier) et filtre les tâches terminées selon l'option de masquage. Cette computed property se met automatiquement à jour lorsque la liste des tâches ou l'option de masquage change.
+
+- **`remainingTodos`** : Calcule le nombre de tâches restantes à accomplir en filtrant les tâches non terminées. Utilisée pour afficher le compteur de tâches restantes dans l'interface.
+
+Ces computed properties permettent d'éviter les recalculs inutiles et s'actualisent automatiquement uniquement lorsque leurs dépendances changent.
+
 ## How to Run
 
 1. Clone the repository.
