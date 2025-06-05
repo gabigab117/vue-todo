@@ -26,6 +26,35 @@ L'application utilise des propriétés calculées (computed) pour optimiser les 
 
 Ces computed properties permettent d'éviter les recalculs inutiles et s'actualisent automatiquement uniquement lorsque leurs dépendances changent.
 
+## Props et Emits
+
+L'application utilise le système de communication parent-enfant de Vue.js avec les props et emits :
+
+### Props
+Les **props** permettent de faire descendre des données du composant parent vers le composant enfant :
+
+- **`Checkbox.vue`** : Reçoit une prop `label` de type `String` depuis `App.vue`
+  - Utilisée pour afficher le texte associé à la checkbox
+  - Déclarée avec `defineProps({ label: String })`
+  - Utilisée de deux façons différentes dans l'application :
+    - Avec une chaîne statique : `<Checkbox label="Bonjour" />`
+    - Avec la propriété dynamique d'un objet : `:label="todo.title"` (le titre de chaque tâche)
+
+### Emits
+Les **emits** permettent à un composant enfant de communiquer avec son parent en émettant des événements :
+
+- **`Checkbox.vue`** : Émet deux événements vers `App.vue`
+  - `check` : Émis quand la checkbox est cochée, avec `event.currentTarget` comme paramètre
+  - `uncheck` : Émis quand la checkbox est décochée, avec `event.currentTarget` comme paramètre
+  - Déclarés avec `defineEmits(["check", "uncheck"])`
+
+### Utilisation dans App.vue
+Le composant parent `App.vue` utilise le composant `Checkbox` en :
+- Passant des données via les props : `:label="todo.title"`
+- Écoutant les événements émis : `@check="(p) => console.log('coché', p)"` et `@uncheck="console.log('pas coché')"`
+
+Cette architecture permet une communication claire et unidirectionnelle entre les composants, respectant les bonnes pratiques de Vue.js.
+
 ## How to Run
 
 1. Clone the repository.

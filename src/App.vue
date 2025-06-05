@@ -23,6 +23,12 @@
         {{ todo.title }}
       </label>
 
+      <Checkbox :label="todo.title" 
+      class="class1" 
+      @check="(p) => console.log('coché', p)"
+      @uncheck="console.log('pas coché')"
+      /> <!--J'envoie des éléments dynamiques--> <!-- passage implicite avec class qui s'applique au premier élément du template -->
+      <!--Avec label je fais descendre des infos-->
       </li>
     </ul>
     <label>
@@ -30,6 +36,9 @@
       Masquer les tâches terminées
     </label>
     <p v-if="remainingTodos">Nombre de tâche{{ remainingTodos > 1 ? "s" : "" }} à faire {{ remainingTodos }}</p>
+
+    <Checkbox label="Bonjour" />
+
 </div>
 <div v-else>
 Pas de tâches
@@ -40,6 +49,7 @@ Pas de tâches
 
 <script setup>
 import { ref, computed } from 'vue';
+import Checkbox from './Checkbox.vue';
 
 const todos = ref([
   {
