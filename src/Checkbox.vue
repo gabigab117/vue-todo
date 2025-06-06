@@ -1,12 +1,15 @@
 <template>
     <label class="label"> <!--Fusion des classes-->
-        <input type="checkbox" @change="onChange">
+        <input type="checkbox" v-model="model" @change="onChange">
         {{ label }} <!--J'utilise directement label-->
     </label>
 
 </template>
 
 <script setup>
+
+const model = defineModel() // Etabli une connexion avec v-model dans App.vue
+
 const props = defineProps({ // props ce que reçoit le composant de ce qui descend de App.vue
     label: String
 })

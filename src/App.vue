@@ -1,5 +1,20 @@
 <template>
 
+  <Layout>
+
+      <template #aside>
+      Sidebar
+    </template>
+      <template #main>
+      Contenu principal
+    </template>
+      <template #footer>
+      Pied de page
+    </template>
+  </Layout>
+
+  <Button><strong>Demo</strong> de bouton</Button>
+
   <h1>Todo</h1>
 
   <form action="" @submit.prevent="createTodo(newTodo)">
@@ -18,15 +33,12 @@
       :key="todo.date"
       :class="{maclasse: todo.completed}"
       >
-      <label>
-        <input type="checkbox" v-model="todo.completed">
-        {{ todo.title }}
-      </label>
 
       <Checkbox :label="todo.title" 
       class="class1" 
       @check="(p) => console.log('coché', p)"
       @uncheck="console.log('pas coché')"
+      v-model="todo.completed"
       /> <!--J'envoie des éléments dynamiques--> <!-- passage implicite avec class qui s'applique au premier élément du template -->
       <!--Avec label je fais descendre des infos-->
       </li>
@@ -48,8 +60,11 @@ Pas de tâches
 
 
 <script setup>
+
 import { ref, computed } from 'vue';
 import Checkbox from './Checkbox.vue';
+import Button from './Button.vue';
+import Layout from './Layout.vue';
 
 const todos = ref([
   {
@@ -79,6 +94,7 @@ const sortedTodos = computed(() => { // computed permet de ne pas appeler la fon
 const remainingTodos = computed(() => {
   return todos.value.filter(t => !t.completed).length
 })
+
 </script>
 
 
