@@ -11,6 +11,7 @@ This is a simple Todo application built with Vue.js. It allows users to manage t
 - Mark tasks as completed using a checkbox.
 - Hide completed tasks with a toggle option.
 - Tasks are sorted by their completion status.
+- **Timer component**: Display a real-time timer with automatic size detection of the container element.
 
 ## Project Structure
 
@@ -18,6 +19,7 @@ This is a simple Todo application built with Vue.js. It allows users to manage t
 - `Layout.vue`: Composant de mise en page utilisant CSS Grid et les slots nommés.
 - `Checkbox.vue`: Composant réutilisable de checkbox avec support des événements personnalisés.
 - `Button.vue`: Composant de bouton réutilisable utilisant les slots pour le contenu.
+- `Timer.vue`: Composant de minuteur affichant le temps écoulé et les dimensions de son conteneur.
 
 ## Computed Properties
 
@@ -86,6 +88,17 @@ Composant de checkbox avancé avec gestion d'état bidirectionnelle :
 - **Props** : Accepte une prop `label` pour le texte d'affichage
 - **Événements personnalisés** : Émet `check` et `uncheck` avec l'élément checkbox comme paramètre
 - **Flexibilité** : Peut être utilisé avec ou sans v-model, avec des labels statiques ou dynamiques
+
+### Timer.vue
+Composant de minuteur avec gestion du cycle de vie et détection automatique des dimensions :
+
+- **Reactive timer** : Affiche un compteur qui s'incrémente chaque seconde automatiquement
+- **Size detection** : Détecte et affiche la largeur et hauteur de son conteneur grâce à `getBoundingClientRect()`
+- **Lifecycle hooks** : 
+  - `onMounted()` : Initialise le timer avec `setInterval()` et calcule les dimensions initiales
+  - `onUnmounted()` : Nettoie le timer avec `clearInterval()` pour éviter les fuites mémoire
+- **Template refs** : Utilise `ref` pour accéder à l'élément DOM du conteneur
+- **Conditional rendering** : Peut être affiché/masqué via un bouton toggle dans `App.vue`
 
 ## Utilisation des Slots
 

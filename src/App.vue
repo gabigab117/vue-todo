@@ -1,7 +1,9 @@
 <template>
+  <button @click="showTimer = !showTimer"> Show le time !</button>
+
+  <Timer v-if="showTimer" />
 
   <Layout>
-
       <template #aside>
       Sidebar
     </template>
@@ -65,6 +67,7 @@ import { ref, computed } from 'vue';
 import Checkbox from './Checkbox.vue';
 import Button from './Button.vue';
 import Layout from './Layout.vue';
+import Timer from './Timer.vue';
 
 const todos = ref([
   {
@@ -94,6 +97,8 @@ const sortedTodos = computed(() => { // computed permet de ne pas appeler la fon
 const remainingTodos = computed(() => {
   return todos.value.filter(t => !t.completed).length
 })
+
+const showTimer = ref(true)
 
 </script>
 
